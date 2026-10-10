@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#04050a">
+  <title>Vault · Pool de cuentas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="grid"></i></div>
+
+  <!-- LOGIN -->
+  <main id="login" class="login hidden">
+    <form id="loginForm" class="panel login-card" autocomplete="on">
+      <div class="logo" aria-hidden="true"></div>
+      <h1 class="metal-text">Vault</h1>
+      <p class="muted">Acceso privado al pool de cuentas.</p>
+      <label>Correo
+        <input id="lEmail" type="email" autocomplete="username" required placeholder="tu@correo.com">
+      </label>
+      <label>Contraseña
+        <input id="lPass" type="password" autocomplete="current-password" required placeholder="••••••••">
+      </label>
+      <p id="lError" class="error" role="alert"></p>
+      <button class="btn btn-blue" type="submit" id="lBtn">Entrar</button>
+    </form>
+  </main>
+
+  <!-- DASHBOARD -->
+  <div id="app" class="app hidden">
+    <header class="top">
+      <div class="brand"><span class="logo sm" aria-hidden="true"></span><strong class="metal-text">Vault</strong></div>
+      <div class="top-actions">
+        <button class="btn btn-ghost" id="btnResetAll">Reset general</button>
+        <button class="btn btn-blue" id="btnAdd">Agregar cuenta</button>
+        <button class="btn btn-ghost" id="btnOut">Salir</button>
+      </div>
+    </header>
+
+    <section class="stats" id="stats" aria-label="Resumen por estado"></section>
+
+    <div class="toolbar">
+      <label class="sel">Proyecto
+        <select id="fProject"></select>
+      </label>
+      <span class="muted" id="sync">Sincronizando…</span>
+    </div>
+
+    <section id="grid" class="cards" aria-live="polite"></section>
+  </div>
+
+  <!-- MODAL AGREGAR / EDITAR -->
+  <dialog id="modal" class="panel">
+    <form id="accForm" method="dialog">
+      <h2 id="mTitle">Agregar cuenta</h2>
+      <label>Correo <input id="aEmail" type="text" required autocomplete="off"></label>
+      <label>Contraseña <input id="aPass" type="text" required autocomplete="off"></label>
+      <label>Proyecto
+        <input id="aProject" list="projects" placeholder="Ej: FrutiNovelas" autocomplete="off">
+        <datalist id="projects"></datalist>
+      </label>
+      <div class="row">
+        <button class="btn btn-ghost" type="button" id="mCancel">Cancelar</button>
+        <button class="btn btn-blue" type="submit">Guardar cuenta</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
